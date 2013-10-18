@@ -1,0 +1,17 @@
+.DS_STORE
+application.log
+/vendor/
+composer.lock
+composer.phar
+composer.json
+connectors/*
+!/protected/assets/*
+phpmyadmin
+.idea/
+chive/
+protected/runtime/
+intro.mp4
+protected/temp/*
+error.log
+out.log
+

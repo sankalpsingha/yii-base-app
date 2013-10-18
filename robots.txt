@@ -1,0 +1,10 @@
+User-agent: *
+Disallow:
+Disallow: /cgi-bin/
+Disallow: /protected/
+Disallow: /protected/assets/
+Disallow: /developers/
+Disallow: /vendor/
+Disallow: /modules/
+Disallow: /themes/
+
