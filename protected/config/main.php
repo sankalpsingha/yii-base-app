@@ -55,9 +55,10 @@ return array(
 
         'bootstrap' => array(
             'class' => 'ext.bootstrap.components.Bootstrap',
-            'responsiveCss' => true,
+            //'responsiveCss' => true,
             'fontAwesomeCss' => true,
-            'bootstrapCss' => false,
+           // 'bootstrapCss' => false,
+            //'coreCss' => false,
             'minify' => true,
         ),
 
@@ -77,6 +78,11 @@ return array(
 			'password' => 'campusplugin',
 			'charset' => 'utf8',
 		),
+
+
+        'request' => array(
+            'enableCsrfValidation' => true,
+        ),
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

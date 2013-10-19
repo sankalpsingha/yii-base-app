@@ -1,3 +1,8 @@
+<?php
+
+Yii::app()->clientScript->registerCssFile($this->assetsBase.'/css/bs/slate.min.css');
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -18,7 +23,30 @@
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
 
-<?php echo $content; ?>
+
+<?php
+$this->widget(
+    'bootstrap.widgets.TbNavbar',
+    array(
+        'brand' => 'Base App',
+        //'fixed' => false,
+        'items' => array(
+            array(
+                'class' => 'bootstrap.widgets.TbMenu',
+                'items' => array(
+                    array('label' => 'Home', 'url' => '/site/index', 'active' => true,'icon'=>'icon-home'),
+                    array('label' => 'Contact Us', 'url' => '/site/contact','icon'=>'icon-bell-alt'),
+                    array('label' => 'Link', 'url' => '#'),
+                )
+            )
+        )
+    )
+);
+?>
+
+<div class="container" style="margin-top: 60px">
+    <?php echo $content; ?>
+</div>
 
 <script src="<?php echo $this->assetsBase.'/js/plugins.js' ?>"></script>
 
