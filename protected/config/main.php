@@ -57,6 +57,8 @@ return array(
             'class' => 'ext.bootstrap.components.Bootstrap',
             'responsiveCss' => true,
             'fontAwesomeCss' => true,
+            'bootstrapCss' => false,
+            'minify' => true,
         ),
 
 

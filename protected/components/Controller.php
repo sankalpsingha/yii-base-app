@@ -5,6 +5,31 @@
  */
 class Controller extends CController
 {
+    private $_assetsBase;
+
+    /**
+     * @return mixed
+     * This method returns the asset base to be used in the views. Now all the
+     * CSS/JS and IMG can be put in the assets folder located at 'application.assets'
+     *
+     * Now in the view, any static file which is put in the assets folder can be accessed
+     * via : Yii::app()->clientScript->registerCssFile($this->assetsBase.'/css/campusstyle.css');
+     *
+     * @author  Sankalp Singha
+     */
+    public function getAssetsBase()
+    {
+        if ($this->_assetsBase === null) {
+            $this->_assetsBase = Yii::app()->assetManager->publish(
+                Yii::getPathOfAlias('application.assets'),
+                false,
+                -1,
+                defined('YII_DEBUG') && YII_DEBUG
+            );
+        }
+        return $this->_assetsBase;
+    }
+
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
