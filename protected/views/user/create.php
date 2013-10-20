@@ -1,15 +1,7 @@
-<?php
-$this->breadcrumbs=array(
-	'Users'=>array('index'),
-	'Create',
-);
+<div class="row-fluid">
 
-$this->menu=array(
-array('label'=>'List User','url'=>array('index')),
-array('label'=>'Manage User','url'=>array('admin')),
-);
-?>
-
-<h1>Create User</h1>
-
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+   <div class="span6 offset3 well">
+       <legend>Create User</legend>
+       <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+   </div>
+</div>

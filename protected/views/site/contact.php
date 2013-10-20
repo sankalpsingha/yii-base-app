@@ -1,8 +1,8 @@
 <div class="row-fluid">
 
-<div class="span10 offset1 well">
+<div class="span8 offset2 well">
 
-    <legend>Contact Us</legend>
+    <legend><i class="icon-bullhorn"></i> Contact Us</legend>
     <?php
 
     // This is for the flash messages

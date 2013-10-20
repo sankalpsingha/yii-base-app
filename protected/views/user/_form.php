@@ -8,11 +8,11 @@
 
 <?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'username',array('class'=>'span5','maxlength'=>100)); ?>
+	<?php echo $form->textFieldRow($model,'username',array('class'=>'span8','maxlength'=>100)); ?>
 
-	<?php echo $form->passwordFieldRow($model,'password',array('class'=>'span5','maxlength'=>200)); ?>
+	<?php echo $form->passwordFieldRow($model,'password',array('class'=>'span8','maxlength'=>200)); ?>
 
-	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','maxlength'=>100)); ?>
+	<?php echo $form->textFieldRow($model,'email',array('class'=>'span8','maxlength'=>100)); ?>
 
 	<?php echo $form->dropDownListRow($model,'gender',$model->getUserGender()); ?>
 
@@ -21,7 +21,7 @@
 <div class="form-actions">
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
-			'type'=>'primary',
+			'type'=>'success',
 			'label'=>$model->isNewRecord ? 'Create' : 'Save',
 		)); ?>
 </div>

@@ -1,7 +1,5 @@
 <?php
-
-Yii::app()->clientScript->registerCssFile($this->assetsBase.'/css/bs/slate.min.css');
-
+//Yii::app()->clientScript->registerCssFile($this->assetsBase.'/css/bs/slate.min.css');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -14,8 +12,6 @@ Yii::app()->clientScript->registerCssFile($this->assetsBase.'/css/bs/slate.min.c
     <title><?php  echo CHtml::encode($this->pageTitle); ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-
-
     <script src="<?php echo $this->assetsBase.'/js/vendor/modernizr-2.6.2.min.js'; ?>"></script>
 </head>
 <body>
@@ -29,14 +25,17 @@ $this->widget(
     'bootstrap.widgets.TbNavbar',
     array(
         'brand' => 'Base App',
+        'collapse' => true,
         //'fixed' => false,
         'items' => array(
             array(
                 'class' => 'bootstrap.widgets.TbMenu',
                 'items' => array(
-                    array('label' => 'Home', 'url' => '/site/index', 'active' => true,'icon'=>'icon-home'),
-                    array('label' => 'Contact Us', 'url' => '/site/contact','icon'=>'icon-bell-alt'),
-                    array('label' => 'Link', 'url' => '#'),
+                    array('label' => 'Home', 'url' => array('/site/index'), 'icon'=>'icon-home'),
+                    array('label' => 'Contact Us', 'url' => array('/site/contact'),'icon'=>'icon-bell'),
+                    array('label' => 'Register', 'url' => array('/user/create'), 'icon'=>'icon-signin','visible'=>Yii::app()->user->isGuest),
+                    array('label' => 'Log In', 'url' => array('/site/login'),'icon'=>'icon-off','visible'=>Yii::app()->user->isGuest),
+                    array('label' => 'Log Out', 'url' => array('/site/logout'),'icon'=>'icon-off','visible'=>!Yii::app()->user->isGuest),
                 )
             )
         )

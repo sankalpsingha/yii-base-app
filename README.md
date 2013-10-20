@@ -1,0 +1,1 @@
+This is the base app of the default WEB APP.
