@@ -2,11 +2,14 @@
 
 class UserController extends Controller
 {
+
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout='//layouts/column1';
+
+    public $defaultAction = 'home';
 
     /**
      * @return array action filters
@@ -31,7 +34,7 @@ class UserController extends Controller
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('update'),
+                'actions'=>array('update','home','settings','changepassword'),
                 'users'=>array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -171,6 +174,49 @@ class UserController extends Controller
         {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+
+    /**
+     * This is the function that is responsible for the creation of the homepage.
+     * @author : Sankalp Singha
+     */
+    public function actionHome(){
+        $this->render('homepage');
+    }
+
+
+    /**
+     * This is the page that would render the settings page for the user.
+     * @author : Sankalp Singha
+     */
+    public function actionSettings(){
+        $this->render('settings');
+    }
+
+    /**
+     * This is the function that is responsible for changing the user's password.
+     * This is done via Ajax.
+     * @author : Sankalp Singha <sankalpsingha@gmail.com>
+     */
+    public function actionChangePassword(){
+        if(Yii::app()->request->isAjaxRequest){
+            $user = User::model()->findByPk(Yii::app()->user->id);
+            if(isset($_POST['oldpass'])){
+                if($user->password !== crypt($_POST['oldpass'], $user->password)){
+                    echo "The old password that you entered is incorrect";
+                }elseif($_POST['newpass']!==$_POST['repeatpass']){
+                    echo "The passwords do not match";
+                }else{
+                    $newPass = crypt($_POST['newpass'], User::model()->blowfishSalt());
+                    $user->password = $newPass;
+                    if($user->update()){
+                        echo "The password has been changed successfully!!";
+                    }
+                }
+            }else{
+                echo "Some error occurred";
+            }
         }
     }
 }

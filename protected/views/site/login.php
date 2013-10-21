@@ -1,5 +1,5 @@
 <div class="row-fluid">
-    <div class="span8 offset2">
+    <div class="span6 offset3">
 
 
         <div class="well">
@@ -7,8 +7,9 @@
             <p>Please fill out the following form with your login credentials:</p>
 
             <div class="form">
-                <?php $form=$this->beginWidget('CActiveForm', array(
+                <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                     'id'=>'login-form',
+                    'type' => 'horizontal',
                     'enableClientValidation'=>true,
                     'clientOptions'=>array(
                         'validateOnSubmit'=>true,
@@ -18,23 +19,17 @@
                 <p class="note">Fields with <span class="required">*</span> are required.</p>
 
                 <div class="row-fluid">
-                    <?php echo $form->labelEx($model,'username'); ?>
-                    <?php echo $form->textField($model,'username'); ?>
+                    <?php echo $form->textFieldRow($model,'username'); ?>
                     <?php echo $form->error($model,'username'); ?>
                 </div>
 
                 <div class="row-fluid">
-                    <?php echo $form->labelEx($model,'password'); ?>
-                    <?php echo $form->passwordField($model,'password'); ?>
-                    <?php echo $form->error($model,'password'); ?>
-                    <p class="hint">
-                        Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-                    </p>
+                    <?php echo $form->passwordFieldRow($model,'password'); ?>
+
                 </div>
 
                 <div class="row-fluid rememberMe">
-                    <?php echo $form->checkBox($model,'rememberMe'); ?>
-                    <?php echo $form->label($model,'rememberMe'); ?>
+                    <?php echo $form->checkBoxRow($model,'rememberMe'); ?>
                     <?php echo $form->error($model,'rememberMe'); ?>
                 </div>
 
@@ -43,6 +38,9 @@
                 </div>
 
                 <?php $this->endWidget(); ?>
+                <p class="text-error">
+                    New user? <a href="<?php echo $this->createUrl('/user/create'); ?>">Register Now!</a>
+                </p>
             </div><!-- form -->
 
         </div>

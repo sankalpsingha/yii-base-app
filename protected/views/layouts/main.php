@@ -1,5 +1,10 @@
 <?php
 //Yii::app()->clientScript->registerCssFile($this->assetsBase.'/css/bs/slate.min.css');
+Yii::app()->clientScript->registerScriptFile($this->assetsBase.'/js/fokus.min.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScriptFile($this->assetsBase.'/js/prettify.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerCssFile($this->assetsBase.'/css/main.css');
+Yii::app()->clientScript->registerCssFile($this->assetsBase.'/css/prettify.css');
+Yii::app()->clientScript->registerScript('prettify',"prettyPrint();",CClientScript::POS_READY);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -18,12 +23,11 @@
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
-
-
 <?php
 $this->widget(
     'bootstrap.widgets.TbNavbar',
     array(
+        'type' => 'inverse',
         'brand' => 'Base App',
         'collapse' => true,
         //'fixed' => false,
@@ -31,11 +35,15 @@ $this->widget(
             array(
                 'class' => 'bootstrap.widgets.TbMenu',
                 'items' => array(
-                    array('label' => 'Home', 'url' => array('/site/index'), 'icon'=>'icon-home'),
+                    array('label' => 'Home', 'url' => array('/user/home'), 'icon'=>'icon-home'),
                     array('label' => 'Contact Us', 'url' => array('/site/contact'),'icon'=>'icon-bell'),
                     array('label' => 'Register', 'url' => array('/user/create'), 'icon'=>'icon-signin','visible'=>Yii::app()->user->isGuest),
                     array('label' => 'Log In', 'url' => array('/site/login'),'icon'=>'icon-off','visible'=>Yii::app()->user->isGuest),
-                    array('label' => 'Log Out', 'url' => array('/site/logout'),'icon'=>'icon-off','visible'=>!Yii::app()->user->isGuest),
+                    array('label' => ucfirst(Yii::app()->user->name), 'url' => array('/site/logout'),'icon'=>'icon-off','visible'=>!Yii::app()->user->isGuest,
+                        'items'=>array(
+                        array('label' => 'Settings', 'url' => array('/user/settings'), 'icon'=>'icon-cog'),
+                        array('label' => 'Log Out', 'url' => array('/site/logout'), 'icon'=>'icon-off'),
+                    )),
                 )
             )
         )

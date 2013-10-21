@@ -8,6 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Base Web App',
+    'defaultController' => 'user',
 
     // preloading 'log' component
     'preload'=>array('log','bootstrap'),
@@ -80,9 +81,9 @@ return array(
 		),
 
 
-        'request' => array(
+        /*'request' => array(
             'enableCsrfValidation' => true,
-        ),
+        ),*/
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
